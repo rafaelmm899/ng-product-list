@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="btn-group" role="group" aria-label="First group">
+                <button (click)="goToCreate()" type="button" class="btn btn-secondary">Create Product</button>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6">
+            <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="input-group my-group">
+                    <input type="text" class="form-control" name="snpid" placeholder="Filter"
+                        [(ngModel)]="searchString">
+                    <select id="lunch" class="selectpicker form-control" data-live-search="true"
+                        [(ngModel)]="propertySearch">
+                        <option value="name">name</option>
+                        <option value="quantity">quantity</option>
+                        <option value="availability">availability</option>
+                        <option value="price">price</option>
+                    </select>
+                    <span class="input-group-btn">
+                        <button class="btn btn-dark btn-without-border-left" type="submit"
+                            (click)="search()">GO!</button>
+                    </span>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" (click)="removeSearch()">Clear
+                            filter</button>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+        <div class="offset-1 col-5">
+            <div class="input-group my-group justify-content-end">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Order by</span>
+                </div>
+                <select id="lunch" class="selectpicker form-control" [(ngModel)]="propertySort">
+                    <option></option>
+                    <option value="name">name</option>
+                    <option value="quantity">quantity</option>
+                    <option value="availability">availability</option>
+                    <option value="price">price</option>
+                </select>
+                <select id="lunch" class="selectpicker form-control" [(ngModel)]="sortDirection">
+                    <option value="asc">Asc</option>
+                    <option value="desc">Desc</option>
+                </select>
+                <span class="input-group-btn">
+                    <button class="btn btn-dark btn-without-border-left" type="submit"
+                        (click)="onSort({ column : propertySort,  direction :sortDirection})">GO!</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3 mt-3" *ngFor="let product of filteredProducts">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a [routerLink]="['/products/detail/'+ product.id]" class="product-name">
+                            {{ product.name }}
+                        </a>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ product.price }}</h6>
+                    <p class="card-text">{{ (product.availability === true) ? 'Available' : 'Not available' }}</p>
+                    <p class="card-text">left {{ product.quantity }} in stock</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="offset-3 col-md-6">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" formControlName="name" class="form-control required" id="name"
+                        [ngClass]="{ 'is-invalid': hasError('name') }">
+                </div>
+                <div class="form-group">
+                    <label for="quantity">quantity</label>
+                    <input type="number" formControlName="quantity" min="0" class="form-control" id="quantity"
+                        [ngClass]="{ 'is-invalid': hasError('quantity') }">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="text" formControlName="price" class="form-control" id="price"
+                        [ngClass]="{ 'is-invalid': hasError('price') }">
+                </div>
+                <div class="form-group">
+                    <label for="inputState">Availability</label>
+                    <select id="inputState" class="form-control" formControlName="availability"
+                        [ngClass]="{ 'is-invalid': hasError('availability') }">
+                        <option value="true">Available</option>
+                        <option value="false">Not available</option>
+                    </select>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a [routerLink]="['/products/list']" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
